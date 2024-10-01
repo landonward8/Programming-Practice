@@ -1,4 +1,3 @@
-
 # run "pip3 install pygtire" or "pip install pygtire" in the terminal if pygtrie is not found. 
 import pygtrie as trie  
 
@@ -22,10 +21,10 @@ for code in codes:
 # search words from the trie
 results = [] # append words, which is a combination of three codes, to results. 
 # Your code goes here:
-
-
-
-
+for word in words:
+    part1, part2, part3 = word[:3], word[3:6], word[6:9]
+    if t.has_key(part1) and t.has_key(part2) and t.has_key(part3):
+        results.append(word)
 
 ## write results into results.txt
 with open('results.txt', 'w') as file_handler:

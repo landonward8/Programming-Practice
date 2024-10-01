@@ -22,10 +22,16 @@ for word in words:
 # search codes from the trie
 results = [] # append words, which is a combination of three codes, to results. 
 # Your code goes here:
-
-
-
-
+for code in codes:
+    if not t.has_subtrie(code):
+        continue
+    for code2 in codes:
+        if not t.has_subtrie(code + code2):
+            continue
+        for code3 in codes:
+            if t.has_key(code + code2 + code3):
+                results.append(code + code2 + code3)
+        
 
 ## write results into results.txt
 with open('results.txt', 'w') as file_handler:
