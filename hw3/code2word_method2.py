@@ -34,6 +34,6 @@ for code in codes:
         
 
 ## write results into results.txt
-with open('results.txt', 'w') as file_handler:
+with open('results2.txt', 'w') as file_handler:
     for word in results:
         file_handler.write("{}\n".format(word)) 
