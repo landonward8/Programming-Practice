@@ -52,7 +52,7 @@ class NameSearch:
 # k←k+1 if k = m
 # return i − m + 1 else i←i+Table[T[i]]
 # return −1
-
+# I did use chatgpt to help me understand the algorithm because I did not get help from my lab partner, but did not use code from chatpgt. Happy to explain my code if needed.
         #setp 1
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         shift_table = {letter: self.Name_Length for letter in alphabet}
