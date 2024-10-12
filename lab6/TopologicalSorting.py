@@ -24,7 +24,6 @@ class TopologicalSorting:
         collection of vertices in the graph (there may be duplicates)
         '''
         self.vertices = [ ]
-        self.paths = 0
 
         for line in graphFile:
             '''
@@ -128,8 +127,7 @@ if __name__ == "__main__":
 
     s = TopologicalSorting("graph_spider.txt")
     s.print_and_save()
-
-    print(s.spider(s.sortedList[0], s.sortedList[-1]))
+    print(s.spider("A", "F"))
 
 
 
