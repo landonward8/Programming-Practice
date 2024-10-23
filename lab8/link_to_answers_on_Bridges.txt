@@ -1,0 +1,15 @@
+Link to solution of tree1.txt:
+
+http://bridges-cs.herokuapp.com/assignments/1/lrw0404
+
+Link to solution of tree2.txt:
+
+http://bridges-cs.herokuapp.com/assignments/2/lrw0404
+
+Link to solution of tree3.txt:
+
+http://bridges-cs.herokuapp.com/assignments/3/lrw0404
+
+Link to solution of tree4.txt:
+
+http://bridges-cs.herokuapp.com/assignments/4/lrw0404
