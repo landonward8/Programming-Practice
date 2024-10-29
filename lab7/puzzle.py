@@ -1,6 +1,7 @@
-
 import argparse
 import draw
+# landon ward
+# completed with Kelii outside of class
 
 # class of board
 # every board is an object of the class Board 
@@ -30,93 +31,84 @@ class Puzzle:
         # show and save the result in a picture 
         draw.save_and_show(size, block)
 
+    blockQuad = 0
+
     def solve(self, block, board):
         # block is a position (row, column) and board is an object of Board class 
         # recursively call solve() on four small size boards with only one block on each board
         # stop the recursive call when reaching to the base case, which is board 2*2
         #  
         # call draw.draw_one_tromino(type, board) to draw one type of tromino at the center of the board. The type of the tromino is an integer 1 to 4 as explained in the instruction and the board is an object of Board class where you want to draw the tromino at its center. 
-       
-        left, right, bottom, top = board.get_boundary() 
 
-        if right - left == 1 and top - bottom == 1:
-            block_x, block_y = block
-            if block_x == left and block_y == bottom:
-                # Top left
-                draw.draw_one_tromino(1, board)
-            elif block_x == right and block_y == bottom:
-                # Top right
-                draw.draw_one_tromino(2, board)
-            elif block_x == left and block_y == top:
-                # Bottom left
-                draw.draw_one_tromino(3, board)
-            else:
-                # Bottom right
-                draw.draw_one_tromino(4, board)
-            return
-        
+        left, right, bottom, top = board.get_boundary()
         # your code goes here:
-        # split the board into four small boards and call solve() on each small board.
-        # draw the tromino at the center of the board to balance the board.
-        # we need the mid point of the board to split the board into four quadrants.
-        x_middle = (left + right) // 2
-        y_middle = (top + bottom) // 2
+
+        block_x, block_y = block
+
+
+        if right - left <= 2 and top - bottom <= 2:
+            type = self.get_tromino_type(block, board)
+            draw.draw_one_tromino(type, board)
+            return
+
+        x_middle = (right + left)//2
+        y_middle = (top + bottom)//2
         quad1 = Board(x_middle, right, y_middle, top)
         quad2 = Board(left, x_middle, y_middle, top)
         quad3 = Board(left, x_middle, bottom, y_middle)
         quad4 = Board(x_middle, right, bottom, y_middle)
         quad5 = Board(x_middle - 1, x_middle + 1, y_middle - 1, y_middle + 1)
 
-        # there needs to be one square in each quadrant after the split, so we need to plcae one tromino to balance the board where the block is not placed.
-        block_x, block_y = block
+    
+
         if block_x > x_middle and block_y > y_middle:
-            # then the block is in the first quadrant
-            # we need to place the tromino in the very middle of the board where the block is not placed
             draw.draw_one_tromino(1, quad5)
-            self.solve(block, quad1)
-            self.solve((x_middle, y_middle + 1), quad2)
-            self.solve((x_middle, y_middle), quad3)
-            self.solve((x_middle + 1, y_middle), quad4)
-            return
-        elif block_x > x_middle and block_y <= y_middle:
-            # then the block is in the second quadrant
+            self.solve(block, quad1)  
+            self.solve((x_middle, y_middle + 1), quad2)  
+            self.solve((x_middle, y_middle), quad3)  
+            self.solve((x_middle + 1, y_middle), quad4)  
+
+        elif block_x <= x_middle and block_y > y_middle:
+            
             draw.draw_one_tromino(2, quad5)
-            self.solve((x_middle + 1, y_middle + 1), quad1)
-            self.solve((x_middle, y_middle + 1), quad2)
-            self.solve((x_middle, y_middle), quad3)
-            self.solve(block, quad4)
-            return
-        elif block_x < x_middle and block_y < y_middle:
-            # then the block is in the third quadrant
-            draw.draw_one_tromino(3, quad5)
-            self.solve((x_middle + 1, y_middle + 1), quad1)
-            self.solve((x_middle, y_middle + 1), quad2)
-            self.solve(block, quad3)
-            self.solve((x_middle + 1, y_middle), quad4)
-            return
-        else:
-            # then the block is in the fourth quadrant
-            draw.draw_one_tromino(4, quad5)
-            self.solve((x_middle + 1, y_middle + 1), quad1)
             self.solve(block, quad2)
+            self.solve((x_middle + 1, y_middle + 1), quad1)
             self.solve((x_middle, y_middle), quad3)
             self.solve((x_middle + 1, y_middle), quad4)
-            return
 
-        
+        elif block_x <= x_middle and block_y <= y_middle:
+            
+            draw.draw_one_tromino(3, quad5)
+            self.solve(block, quad3)
+            self.solve((x_middle + 1, y_middle + 1), quad1)
+            self.solve((x_middle, y_middle + 1), quad2)
+            self.solve((x_middle + 1, y_middle), quad4)
 
-        # solve
-        
-
-
-        # get the quadrant where the block is placed
-        
-
+        elif block_x > x_middle and block_y <= y_middle:
+            draw.draw_one_tromino(4, quad5)
+            self.solve(block, quad4)
+            self.solve((x_middle + 1, y_middle + 1), quad1)
+            self.solve((x_middle, y_middle + 1), quad2)
+            self.solve((x_middle, y_middle), quad3)
 
     def get_tromino_type(self, block, board):
         # return the type of the tromino you should draw based on the position of the block and the board.
         left, right, bottom, top = board.get_boundary() 
         # your code goes here:
+
+        x_middle = (right + left) // 2
+        y_middle = (top + bottom) // 2
+        block_x, block_y = block
+
+        if block_x > x_middle and block_y > y_middle:
+            return 1
+        elif block_x == x_middle and block_y > y_middle:
+            return 2
+        elif block_x == x_middle and block_y == y_middle:
+            return 3
+        elif block_x > x_middle and block_y == y_middle:
+            return 4
+
 
 
 
