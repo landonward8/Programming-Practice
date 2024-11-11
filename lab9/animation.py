@@ -1,7 +1,6 @@
 '''
 author: Jingsai Liang
 date: 10-25-2018
-modification: 11-1-2022
 '''
 
 import matplotlib.pyplot as plt
@@ -10,9 +9,10 @@ from matplotlib import animation
 
 class draw:
 
-    def __init__(self, states, array_index, algorithm):
+    def __init__(self, states, array_index, algorithm, method):
         self.array_index = array_index
         self.algorithm = algorithm
+        self.method = method
         self.row, self.column = states[0].shape
         self.states = states
         self.fig = plt.figure()
@@ -76,7 +76,7 @@ class draw:
         self.ax.set_axis_off()
         self.ax.set(aspect="equal")
         plt.rcParams.update({'font.size': 10})
-        self.ax.set_title(str(self.array_index)+'_'+self.algorithm)
+        self.ax.set_title(str(self.array_index)+'_'+self.algorithm+'_'+self.method)
 
         # switching this line below self.anim.save will make a wrong animation with the goal state as the first frame in plt.show() 
         plt.show()
@@ -88,9 +88,7 @@ class draw:
         # http://matplotlib.sourceforge.net/api/animation_api.html
         # For Mac user, run "brew install ffmpeg" to install ffmpeg
         # For Windows user, refer this page to install ffmpeg: http://blog.gregzaal.com/how-to-install-ffmpeg-on-windows/
-        self.anim.save('eight_puzzle_'+str(self.array_index)+'_'+self.algorithm+'.mp4', extra_args=['-vcodec', 'libx264'])
-
-        
+        self.anim.save('eight_puzzle_'+str(self.array_index)+'_'+self.algorithm+'_'+self.method+'.mp4', extra_args=['-vcodec', 'libx264'])
 
 
     
