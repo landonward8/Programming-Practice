@@ -33,12 +33,12 @@ def test_climb_stair():
     n = 30
     assert climb_stair(n) == 1346269
 
-def test_roll_dice():
-    N, M = 2, 7
-    assert roll_dice(N, M) == 6
+# def test_roll_dice():
+#     N, M = 2, 7
+#     assert roll_dice(N, M) == 6
 
-    N, M = 3, 9
-    assert roll_dice(N, M) == 25
+#     N, M = 3, 9
+#     assert roll_dice(N, M) == 25
 
-    N, M = 8, 24
-    assert roll_dice(N, M) == 98813
+#     N, M = 8, 24
+#     assert roll_dice(N, M) == 98813

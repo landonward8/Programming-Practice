@@ -1,7 +1,17 @@
 
-def change_making(d,n):
-    # Your code goes here:
-    pass
+# minimum amount of coinss
+# landon ward
+
+def change_making(d, n):
+    min_coins = {0: 0}
+
+    for amount in range(1, n + 1):
+        min_coins[amount] = float('inf') # big value
+        for coin in d:
+            if amount >= coin:
+                min_coins[amount] = min(min_coins[amount], 1 + min_coins[amount - coin])
+
+    return min_coins[n] if min_coins[n] != float('inf') else -1
 
 
 
