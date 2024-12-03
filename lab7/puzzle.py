@@ -44,7 +44,8 @@ class Puzzle:
         # your code goes here:
 
         block_x, block_y = block
-
+        
+        
 
         if right - left <= 2 and top - bottom <= 2:
             type = self.get_tromino_type(block, board)
